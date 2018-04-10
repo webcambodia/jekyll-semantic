@@ -31,7 +31,7 @@ var when = {
 
   // install
   hasConfig: function() {
-    return requireDotFile('semantic.json', process.cwd());
+    return requireDotFile('semantic.json');
   },
 
   allowOverwrite: function(questions) {
@@ -80,14 +80,6 @@ module.exports = {
   // check whether install is setup
   isSetup: function() {
     return when.hasConfig();
-  },
-
-  // detect whether there is a semantic.json configuration and that the auto-install option is set to true
-  shouldAutoInstall: function() {
-    var
-      config = when.hasConfig()
-    ;
-    return config['autoInstall'];
   },
 
   // checks if files are in a PM directory
@@ -282,7 +274,13 @@ module.exports = {
         type    : 'list',
         name    : 'useRoot',
         message :
-          '{packageMessage} Is this your project folder? {root}',
+          '    \n' +
+          '    {packageMessage} \n' +
+          '    \n' +
+          '    Is this your project folder?\n' +
+          '    \033[92m{root}\033[0m \n' +
+          '    \n ' +
+          '\n',
         choices: [
           {
             name  : 'Yes',
@@ -333,7 +331,7 @@ module.exports = {
         when: when.allowOverwrite,
         choices: [
           {
-            name: 'Automatic (Use default locations and all components)',
+            name: 'Automatic (Use defaults locations and all components)',
             value: 'auto'
           },
           {
@@ -407,7 +405,7 @@ module.exports = {
       },
       {
         type: 'list',
-        name: 'changePermissions',
+        name: 'changePermisions',
         when: when.notAuto,
         message: 'Should we set permissions on outputted files?',
         choices: [
@@ -418,7 +416,7 @@ module.exports = {
           {
             name: 'Yes',
             value: true
-          }
+          },
         ]
       },
       {
@@ -732,7 +730,7 @@ module.exports = {
 
     /* Rename Files */
     rename: {
-      json : { extname : '.json' }
+      json : { extname : '.json' },
     },
 
     /* Copy Install Folders */
@@ -754,4 +752,5 @@ module.exports = {
 
     }
   }
+
 };

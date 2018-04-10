@@ -3,21 +3,15 @@
  * http://github.com/semantic-org/semantic-ui/
  *
  *
+ * Copyright 2015 Contributors
  * Released under the MIT license
  * http://opensource.org/licenses/MIT
  *
  */
 
-;(function ($, window, document, undefined) {
+;(function ( $, window, document, undefined ) {
 
-'use strict';
-
-window = (typeof window != 'undefined' && window.Math == Math)
-  ? window
-  : (typeof self != 'undefined' && self.Math == Math)
-    ? self
-    : Function('return this')()
-;
+"use strict";
 
 $.fn.dimmer = function(parameters) {
   var
@@ -83,7 +77,6 @@ $.fn.dimmer = function(parameters) {
             else {
               $dimmer = module.create();
             }
-            module.set.variation();
           }
         },
 
@@ -144,9 +137,6 @@ $.fn.dimmer = function(parameters) {
             $module
               .removeData(moduleNamespace)
             ;
-            $dimmable
-              .off(eventNamespace)
-            ;
           }
         },
 
@@ -174,6 +164,10 @@ $.fn.dimmer = function(parameters) {
           var
             $element = $( settings.template.dimmer() )
           ;
+          if(settings.variation) {
+            module.debug('Creating dimmer with variation', settings.variation);
+            $element.addClass(settings.variation);
+          }
           if(settings.dimmerName) {
             module.debug('Creating named dimmer', settings.dimmerName);
             $element.addClass(settings.dimmerName);
@@ -238,7 +232,6 @@ $.fn.dimmer = function(parameters) {
               }
               $dimmer
                 .transition({
-                  displayType : 'flex',
                   animation   : settings.transition + ' in',
                   queue       : false,
                   duration    : module.get.duration(),
@@ -283,7 +276,6 @@ $.fn.dimmer = function(parameters) {
               module.verbose('Hiding dimmer with css');
               $dimmer
                 .transition({
-                  displayType : 'flex',
                   animation   : settings.transition + ' out',
                   queue       : false,
                   duration    : module.get.duration(),
@@ -391,11 +383,10 @@ $.fn.dimmer = function(parameters) {
             var
               color      = $dimmer.css('background-color'),
               colorArray = color.split(','),
-              isRGB      = (colorArray && colorArray.length == 3),
               isRGBA     = (colorArray && colorArray.length == 4)
             ;
-            opacity    = settings.opacity === 0 ? 0 : settings.opacity || opacity;
-            if(isRGB || isRGBA) {
+            opacity    = settings.opacity || opacity;
+            if(isRGBA) {
               colorArray[3] = opacity + ')';
               color         = colorArray.join(',');
             }
@@ -454,12 +445,7 @@ $.fn.dimmer = function(parameters) {
             $.extend(true, settings, name);
           }
           else if(value !== undefined) {
-            if($.isPlainObject(settings[name])) {
-              $.extend(true, settings[name], value);
-            }
-            else {
-              settings[name] = value;
-            }
+            settings[name] = value;
           }
           else {
             return settings[name];
@@ -477,7 +463,7 @@ $.fn.dimmer = function(parameters) {
           }
         },
         debug: function() {
-          if(!settings.silent && settings.debug) {
+          if(settings.debug) {
             if(settings.performance) {
               module.performance.log(arguments);
             }
@@ -488,7 +474,7 @@ $.fn.dimmer = function(parameters) {
           }
         },
         verbose: function() {
-          if(!settings.silent && settings.verbose && settings.debug) {
+          if(settings.verbose && settings.debug) {
             if(settings.performance) {
               module.performance.log(arguments);
             }
@@ -499,10 +485,8 @@ $.fn.dimmer = function(parameters) {
           }
         },
         error: function() {
-          if(!settings.silent) {
-            module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
-            module.error.apply(console, arguments);
-          }
+          module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
+          module.error.apply(console, arguments);
         },
         performance: {
           log: function(message) {
@@ -642,7 +626,6 @@ $.fn.dimmer.settings = {
   name        : 'Dimmer',
   namespace   : 'dimmer',
 
-  silent      : false,
   debug       : false,
   verbose     : false,
   performance : true,
@@ -707,4 +690,4 @@ $.fn.dimmer.settings = {
 
 };
 
-})( jQuery, window, document );
+})( jQuery, window , document );

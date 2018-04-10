@@ -67,6 +67,9 @@ module.exports = function(callback) {
       outputDirectory      = path.resolve(path.join(release.outputRoot, distribution.toLowerCase() )),
       repoName             = release.distRepoRoot + distribution,
 
+      gitURL               = 'https://github.com/' + release.org + '/' + repoName + '.git',
+      repoURL              = 'https://github.com/' + release.org + '/' + repoName + '/',
+
       commitArgs = (oAuth.name !== undefined && oAuth.email !== undefined)
         ? '--author "' + oAuth.name + ' <' + oAuth.email + '>"'
         : '',
@@ -151,7 +154,7 @@ module.exports = function(callback) {
       if(version) {
         releaseOptions.target_commitish = version;
       }
-      github.repos.createRelease(releaseOptions, function() {
+      github.releases.createRelease(releaseOptions, function() {
         nextRepo();
       });
     }

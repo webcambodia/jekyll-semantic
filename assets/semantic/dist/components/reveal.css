@@ -1,8 +1,9 @@
 /*!
- * # Semantic UI 2.3.1 - Reveal
+ * # Semantic UI x.x - Reveal
  * http://github.com/semantic-org/semantic-ui/
  *
  *
+ * Copyright 2015 Contributors
  * Released under the MIT license
  * http://opensource.org/licenses/MIT
  *
@@ -14,7 +15,7 @@
 *******************************/
 
 .ui.reveal {
-  display: inherit;
+  display: inline-block;
   position: relative !important;
   font-size: 0em !important;
 }
@@ -24,7 +25,7 @@
   left: 0em !important;
   z-index: 3 !important;
   -webkit-transition: all 0.5s ease 0.1s;
-  transition: all 0.5s ease 0.1s;
+          transition: all 0.5s ease 0.1s;
 }
 .ui.reveal > .hidden.content {
   position: relative !important;
@@ -54,14 +55,10 @@
 }
 .ui.slide.reveal > .content {
   display: block;
-  width: 100%;
-  white-space: normal;
   float: left;
   margin: 0em;
   -webkit-transition: -webkit-transform 0.5s ease 0.1s;
-  transition: -webkit-transform 0.5s ease 0.1s;
-  transition: transform 0.5s ease 0.1s;
-  transition: transform 0.5s ease 0.1s, -webkit-transform 0.5s ease 0.1s;
+          transition: transform 0.5s ease 0.1s;
 }
 .ui.slide.reveal > .visible.content {
   position: relative !important;
@@ -154,12 +151,9 @@
 .ui.move.reveal > .content {
   display: block;
   float: left;
-  white-space: normal;
   margin: 0em;
   -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 0.1s;
-  transition: -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 0.1s;
-  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 0.1s;
-  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 0.1s, -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 0.1s;
+          transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 0.1s;
 }
 .ui.move.reveal > .visible.content {
   position: relative !important;
@@ -205,7 +199,7 @@
   -webkit-transform-origin: bottom right;
           transform-origin: bottom right;
 }
-.ui.rotate.active.reveal > .visible.content,
+.ui.rotate.active.reveal > .visible.conten,
 .ui.rotate.reveal:hover > .visible.content,
 .ui.rotate.right.active.reveal > .visible.content,
 .ui.rotate.right.reveal:hover > .visible.content {
@@ -227,7 +221,15 @@
               States
 *******************************/
 
-.ui.disabled.reveal:hover > .visible.visible.content {
+.ui.disabled.reveal {
+  opacity: 1 !important;
+}
+.ui.disabled.reveal > .content {
+  -webkit-transition: none !important;
+          transition: none !important;
+}
+.ui.disabled.active.reveal > .visible.content,
+.ui.disabled.reveal:hover > .visible.content {
   position: static !important;
   display: block !important;
   opacity: 1 !important;
@@ -238,17 +240,9 @@
   -webkit-transform: none !important;
           transform: none !important;
 }
-.ui.disabled.reveal:hover > .hidden.hidden.content {
+.ui.disabled.active.reveal > .hidden.content,
+.ui.disabled.reveal:hover > .hidden.content {
   display: none !important;
-}
-
-
-/*******************************
-           Coupling
-*******************************/
-
-.ui.reveal > .ui.ribbon.label {
-  z-index: 5;
 }
 
 

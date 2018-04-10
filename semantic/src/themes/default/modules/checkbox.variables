@@ -48,8 +48,8 @@
 @labelPressedColor: @selectedTextColor;
 
 /* Focus */
-@checkboxFocusBackground: @white;
-@checkboxFocusBorderColor: @focusedFormMutedBorderColor;
+@checkboxFocusBackground: @offWhite;
+@checkboxFocusBorderColor: @selectedBorderColor;
 @checkboxFocusCheckColor: @selectedTextColor;
 @labelFocusColor: @selectedTextColor;
 
@@ -61,8 +61,8 @@
 @checkboxActiveCheckOpacity: 1;
 
 /* Active Focus */
-@checkboxActiveFocusBackground: @white;
-@checkboxActiveFocusBorderColor: @checkboxFocusBorderColor;
+@checkboxActiveFocusBackground: @offWhite;
+@checkboxActiveFocusBorderColor: @strongSelectedBorderColor;
 @checkboxActiveFocusCheckColor: @selectedTextColor;
 
 /* Indeterminate */
@@ -162,7 +162,6 @@
 
 @toggleLaneBackground: @transparentBlack;
 @toggleLaneHeight: @toggleHandleSize;
-@toggleLaneBoxShadow: none;
 @toggleLaneVerticalOffset: 0rem;
 @toggleOffOffset: -0.05rem;
 @toggleOnOffset: (@toggleLaneWidth - @toggleHandleSize) + 0.15rem;
@@ -176,12 +175,9 @@
 @toggleHoverColor: @toggleFocusColor;
 
 @toggleOffLabelColor: @checkboxColor;
-@toggleOffHandleBoxShadow: @handleBoxShadow;
 
 @toggleOnLabelColor: @selectedTextColor;
 @toggleOnLaneColor: @primaryColor;
-
-@toggleOnHandleBoxShadow: @handleBoxShadow;
 
 @toggleOnFocusLaneColor: @primaryColorFocus;
 @toggleOnFocusLabelColor: @toggleOnLabelColor;

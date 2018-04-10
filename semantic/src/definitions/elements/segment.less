@@ -3,6 +3,7 @@
  * http://github.com/semantic-org/semantic-ui/
  *
  *
+ * Copyright 2015 Contributors
  * Released under the MIT license
  * http://opensource.org/licenses/MIT
  *
@@ -85,8 +86,7 @@
 
 /* Grid */
 .ui.page.grid.segment,
-.ui.grid > .row > .ui.segment.column,
-.ui.grid > .ui.segment.column {
+.ui.grid .ui.segment.column {
   padding-top: @pageGridMargin;
   padding-bottom: @pageGridMargin;
 }
@@ -226,13 +226,6 @@
   padding: @veryPaddedSegmentPadding;
 }
 
-/* Padded vertical */
-.ui.padded.segment.vertical.segment,
-.ui[class*="very padded"].vertical.segment {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
 /*-------------------
        Compact
 --------------------*/
@@ -327,11 +320,6 @@
   border-radius: 0em 0em @borderRadius @borderRadius;
 }
 
-/* Only */
-.ui.segments:not(.horizontal) > .segment:only-child {
-  border-radius: @borderRadius;
-}
-
 
 /* Nested Group */
 .ui.segments > .ui.segments {
@@ -381,11 +369,6 @@
   box-shadow: none;
   border-left: @borderWidth solid @borderColor;
 }
-
-/* Border Fixes */
-.ui.segments > .horizontal.segments:first-child {
-  border-top: none;
-}
 .ui.horizontal.segments > .segment:first-child {
   border-left: none;
 }
@@ -411,7 +394,7 @@
 .ui.loading.segment {
   position: relative;
   cursor: default;
-  pointer-events: none;
+  point-events: none;
   text-shadow: none !important;
   color: transparent !important;
   transition: all 0s linear;
@@ -495,7 +478,7 @@
 
 /* Red */
 .ui.red.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @red !important;
+  border-top: @coloredBorderSize solid @red;
 }
 .ui.inverted.red.segment {
   background-color: @red !important;
@@ -504,7 +487,7 @@
 
 /* Orange */
 .ui.orange.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @orange !important;
+  border-top: @coloredBorderSize solid @orange;
 }
 .ui.inverted.orange.segment {
   background-color: @orange !important;
@@ -513,7 +496,7 @@
 
 /* Yellow */
 .ui.yellow.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @yellow !important;
+  border-top: @coloredBorderSize solid @yellow;
 }
 .ui.inverted.yellow.segment {
   background-color: @yellow !important;
@@ -522,7 +505,7 @@
 
 /* Olive */
 .ui.olive.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @olive !important;
+  border-top: @coloredBorderSize solid @olive;
 }
 .ui.inverted.olive.segment {
   background-color: @olive !important;
@@ -531,7 +514,7 @@
 
 /* Green */
 .ui.green.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @green !important;
+  border-top: @coloredBorderSize solid @green;
 }
 .ui.inverted.green.segment {
   background-color: @green !important;
@@ -540,7 +523,7 @@
 
 /* Teal */
 .ui.teal.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @teal !important;
+  border-top: @coloredBorderSize solid @teal;
 }
 .ui.inverted.teal.segment {
   background-color: @teal !important;
@@ -549,7 +532,7 @@
 
 /* Blue */
 .ui.blue.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @blue !important;
+  border-top: @coloredBorderSize solid @blue;
 }
 .ui.inverted.blue.segment {
   background-color: @blue !important;
@@ -558,7 +541,7 @@
 
 /* Violet */
 .ui.violet.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @violet !important;
+  border-top: @coloredBorderSize solid @violet;
 }
 .ui.inverted.violet.segment {
   background-color: @violet !important;
@@ -567,7 +550,7 @@
 
 /* Purple */
 .ui.purple.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @purple !important;
+  border-top: @coloredBorderSize solid @purple;
 }
 .ui.inverted.purple.segment {
   background-color: @purple !important;
@@ -576,7 +559,7 @@
 
 /* Pink */
 .ui.pink.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @pink !important;
+  border-top: @coloredBorderSize solid @pink;
 }
 .ui.inverted.pink.segment {
   background-color: @pink !important;
@@ -585,7 +568,7 @@
 
 /* Brown */
 .ui.brown.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @brown !important;
+  border-top: @coloredBorderSize solid @brown;
 }
 .ui.inverted.brown.segment {
   background-color: @brown !important;
@@ -594,7 +577,7 @@
 
 /* Grey */
 .ui.grey.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @grey !important;
+  border-top: @coloredBorderSize solid @grey;
 }
 .ui.inverted.grey.segment {
   background-color: @grey !important;
@@ -603,7 +586,7 @@
 
 /* Black */
 .ui.black.segment:not(.inverted) {
-  border-top: @coloredBorderSize solid @black !important;
+  border-top: @coloredBorderSize solid @black;
 }
 .ui.inverted.black.segment {
   background-color: @black !important;
@@ -706,7 +689,7 @@
   box-shadow: @attachedBoxShadow;
   border: @attachedBorder;
 }
-.ui.attached:not(.message) + .ui.attached.segment:not(.top) {
+.ui.attached + .ui.attached.segment:not(.top) {
   border-top: none;
 }
 
@@ -733,43 +716,6 @@
 }
 .ui.segment[class*="bottom attached"]:last-child {
   margin-bottom: 0em;
-}
-
-/*-------------------
-        Size
---------------------*/
-
-.ui.mini.segments .segment,
-.ui.mini.segment {
-  font-size: @mini;
-}
-.ui.tiny.segments .segment,
-.ui.tiny.segment {
-  font-size: @tiny;
-}
-.ui.small.segments .segment,
-.ui.small.segment {
-  font-size: @small;
-}
-.ui.segments .segment,
-.ui.segment {
-  font-size: @medium;
-}
-.ui.large.segments .segment,
-.ui.large.segment {
-  font-size: @large;
-}
-.ui.big.segments .segment,
-.ui.big.segment {
-  font-size: @big;
-}
-.ui.huge.segments .segment,
-.ui.huge.segment {
-  font-size: @huge;
-}
-.ui.massive.segments .segment,
-.ui.massive.segment {
-  font-size: @massive;
 }
 
 .loadUIOverrides();

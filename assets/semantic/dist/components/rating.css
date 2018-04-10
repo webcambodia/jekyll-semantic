@@ -1,8 +1,9 @@
 /*!
- * # Semantic UI 2.3.1 - Rating
+ * # Semantic UI x.x - Rating
  * http://github.com/semantic-org/semantic-ui/
  *
  *
+ * Copyright 2015 Contributors
  * Released under the MIT license
  * http://opensource.org/licenses/MIT
  *
@@ -38,7 +39,7 @@
   width: 1.25em;
   height: auto;
   -webkit-transition: opacity 0.1s ease, background 0.1s ease, text-shadow 0.1s ease, color 0.1s ease;
-  transition: opacity 0.1s ease, background 0.1s ease, text-shadow 0.1s ease, color 0.1s ease;
+          transition: opacity 0.1s ease, background 0.1s ease, text-shadow 0.1s ease, color 0.1s ease;
 }
 
 
@@ -163,7 +164,7 @@
 *******************************/
 
 .ui.mini.rating {
-  font-size: 0.78571429rem;
+  font-size: 0.71428571rem;
 }
 .ui.tiny.rating {
   font-size: 0.85714286rem;
@@ -207,7 +208,7 @@
 
 /* Empty Star */
 .ui.rating .icon:before {
-  content: '\f005';
+  content: '\f006';
 }
 
 /* Active Star */

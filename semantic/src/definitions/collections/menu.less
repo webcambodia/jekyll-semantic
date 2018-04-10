@@ -82,7 +82,6 @@
   line-height: 1;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-  flex: 0 0 auto;
   user-select: none;
 
   background: @itemBackground;
@@ -177,6 +176,12 @@
   padding-top: @inputVerticalPadding;
   padding-bottom: @inputVerticalPadding;
 }
+.ui.menu .item > .input .button,
+.ui.menu .item > .input .label {
+  padding-top: @inputVerticalPadding;
+  padding-bottom: @inputVerticalPadding;
+}
+
 
 
 /*--------------
@@ -198,6 +203,18 @@
 }
 
 /*--------------
+     Popup
+---------------*/
+
+.ui.menu .ui.popup {
+  display: none;
+}
+.ui.menu .ui.visible.popup {
+  display: block;
+}
+
+
+/*--------------
     Dropdowns
 ---------------*/
 
@@ -211,19 +228,18 @@
 
 /* Menu */
 .ui.menu .dropdown.item .menu {
+  left: 0px;
   min-width: ~"calc(100% - 1px)";
   border-radius: 0em 0em @dropdownMenuBorderRadius @dropdownMenuBorderRadius;
   background: @dropdownBackground;
   margin: @dropdownMenuDistance 0px 0px;
   box-shadow: @dropdownMenuBoxShadow;
-  flex-direction: column !important;
 }
 
 
 /* Menu Items */
 .ui.menu .ui.dropdown .menu > .item {
   margin: 0;
-  text-align: left;
   font-size: @dropdownItemFontSize !important;
   padding: @dropdownItemPadding !important;
   background: @dropdownItemBackground !important;
@@ -283,17 +299,12 @@
   margin-left: 1em;
 }
 .ui.vertical.menu .dropdown.item .menu {
+  top: 0% !important;
   left: 100%;
   min-width: 0;
   margin: 0em 0em 0em @dropdownMenuDistance;
   box-shadow: @dropdownVerticalMenuBoxShadow;
   border-radius: 0em @dropdownMenuBorderRadius @dropdownMenuBorderRadius @dropdownMenuBorderRadius;
-}
-.ui.vertical.menu .dropdown.item.upward .menu {
-  bottom: 0;
-}
-.ui.vertical.menu .dropdown.item:not(.upward) .menu {
-  top: 0;
 }
 .ui.vertical.menu .active.dropdown.item {
   border-top-right-radius: 0em;
@@ -325,6 +336,9 @@
   margin-bottom: @labelOffset;
   padding: @labelVerticalPadding @labelHorizontalPadding;
 }
+.ui.menu .item > .label:before {
+  background-color: @labelBackground;
+}
 .ui.menu .item > .floating.label {
   padding: @labelVerticalPadding @labelHorizontalPadding;
 }
@@ -350,15 +364,6 @@
 *******************************/
 
 /*--------------
-     List
----------------*/
-
-/* Menu divider shouldnt apply */
-.ui.menu .list .item:before {
-  background: none !important;
-}
-
-/*--------------
      Sidebar
 ---------------*/
 
@@ -378,7 +383,7 @@
 
 @media only screen and (max-width: @largestMobileScreen) {
   .ui.menu > .ui.container {
-    width: 100% !important;
+    width: 100%;
     margin-left: 0em !important;
     margin-right: 0em !important;
   }
@@ -417,7 +422,7 @@
 .ui.menu .link.item:active,
 .ui.menu a.item:active {
   background: @pressedItemBackground;
-  color: @pressedItemTextColor;
+  color: @pressedItemColor;
 }
 
 
@@ -452,9 +457,9 @@
 
 .ui.menu .item.disabled,
 .ui.menu .item.disabled:hover {
-  cursor: default !important;
+  cursor: default;
   background-color: transparent !important;
-  color: @disabledTextColor !important;
+  color: @disabledTextColor;
 }
 
 
@@ -539,6 +544,7 @@ Floated Menu / Item
   width: 100%;
   height: @dividerSize;
   background: @verticalDividerBackground;
+  height: 1px;
 }
 
 .ui.vertical.menu .item:first-child:before {
@@ -571,13 +577,13 @@ Floated Menu / Item
   box-shadow: @verticalActiveBoxShadow;
 }
 .ui.vertical.menu > .active.item:first-child {
-  border-radius: @borderRadius @borderRadius 0em 0em;
+  border-radius: 0em @borderRadius 0em 0em;
 }
 .ui.vertical.menu > .active.item:last-child {
-  border-radius: 0em 0em @borderRadius @borderRadius;
+  border-radius: 0em 0em @borderRadius 0em;
 }
 .ui.vertical.menu > .active.item:only-child {
-  border-radius: @borderRadius;
+  border-radius: 0em @borderRadius @borderRadius 0em;
 }
 .ui.vertical.menu .active.item .menu .active.item {
   border-left: none;
@@ -594,24 +600,26 @@ Floated Menu / Item
 ---------------*/
 
 .ui.tabular.menu {
+  background-color: transparent;
   border-radius: 0em;
   box-shadow: none !important;
   border: none;
-  background: @tabularBackground;
   border-bottom: @tabularBorderWidth solid @tabularBorderColor;
 }
 .ui.tabular.fluid.menu {
   width: @tabularFluidWidth !important;
 }
 .ui.tabular.menu .item {
-  background: transparent;
-  border-bottom: none;
+  background-color: transparent;
 
   border-left: @tabularBorderWidth solid transparent;
   border-right: @tabularBorderWidth solid transparent;
   border-top: @tabularOppositeBorderWidth solid transparent;
-  padding: @tabularVerticalPadding @tabularHorizontalPadding;
-  color: @tabularTextColor;
+  border-bottom: none;
+
+  padding-left: @tabularHorizontalPadding;
+  padding-right: @tabularHorizontalPadding;
+  color: @tabularMenuTextColor;
 }
 .ui.tabular.menu .item:before {
   display: none;
@@ -620,12 +628,12 @@ Floated Menu / Item
 /* Hover */
 .ui.tabular.menu .item:hover {
   background-color: transparent;
-  color: @tabularHoveredTextColor;
+  color: @hoveredTextColor;
 }
 
 /* Active */
 .ui.tabular.menu .active.item {
-  background: @tabularActiveBackground;
+  background-color: @tabularMenuActiveBackground;
   color: @tabularActiveColor;
   border-top-width: @tabularBorderWidth;
   border-color: @tabularBorderColor;
@@ -636,46 +644,16 @@ Floated Menu / Item
 }
 
 /* Coupling with segment for attachment */
-.ui.tabular.menu + .attached:not(.top).segment,
-.ui.tabular.menu + .attached:not(.top).segment + .attached:not(.top).segment {
+.ui.tabular.menu + .bottom.attached.segment,
+.ui.tabular.menu ~ .bottom.attached.segment + .bottom.attached.segment {
   border-top: none;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
+  margin: 0px;
   width: 100%;
 }
-.top.attached.segment + .ui.bottom.tabular.menu {
-  position: relative;
-  width: @tabularFluidWidth;
-  left: -@tabularFluidOffset;
-}
 
-/* Bottom Vertical Tabular */
-.ui.bottom.tabular.menu {
-  background: @tabularBackground;
-  border-radius: 0em;
-  box-shadow: none !important;
-  border-bottom: none;
-  border-top: @tabularBorderWidth solid @tabularBorderColor;
-}
-.ui.bottom.tabular.menu .item {
-  background: none;
-  border-left: @tabularBorderWidth solid transparent;
-  border-right: @tabularBorderWidth solid transparent;
-  border-bottom: @tabularBorderWidth solid transparent;
-  border-top: none;
-}
-.ui.bottom.tabular.menu .active.item {
-  background: @tabularActiveBackground;
-  color: @tabularActiveColor;
-  border-color: @tabularBorderColor;
-  margin: -@tabularBorderWidth 0px 0px 0px;
-  border-radius: 0px 0px @tabularBorderRadius @tabularBorderRadius !important;
-}
-
-/* Vertical Tabular (Left) */
+/* Vertical Tabular */
 .ui.vertical.tabular.menu {
-  background: @tabularVerticalBackground;
+  background-color: transparent;
   border-radius: 0em;
   box-shadow: none !important;
   border-bottom: none;
@@ -688,36 +666,14 @@ Floated Menu / Item
   border-top: @tabularBorderWidth solid transparent;
   border-right: none;
 }
+
+/* Active */
 .ui.vertical.tabular.menu .active.item {
-  background: @tabularActiveBackground;
-  color: @tabularActiveColor;
+  background-color: @tabularMenuActiveBackground;
+  color: @tabularMenuActiveColor;
   border-color: @tabularBorderColor;
   margin: 0px -@tabularBorderWidth 0px 0px;
   border-radius: @tabularBorderRadius 0px 0px @tabularBorderRadius !important;
-}
-
-/* Vertical Right Tabular */
-.ui.vertical.right.tabular.menu {
-  background: @tabularVerticalBackground;
-  border-radius: 0em;
-  box-shadow: none !important;
-  border-bottom: none;
-  border-right: none;
-  border-left: @tabularBorderWidth solid @tabularBorderColor;
-}
-.ui.vertical.right.tabular.menu .item {
-  background: none;
-  border-right: @tabularBorderWidth solid transparent;
-  border-bottom: @tabularBorderWidth solid transparent;
-  border-top: @tabularBorderWidth solid transparent;
-  border-left: none;
-}
-.ui.vertical.right.tabular.menu .active.item {
-  background: @tabularActiveBackground;
-  color: @tabularActiveColor;
-  border-color: @tabularBorderColor;
-  margin: 0px 0px 0px -@tabularBorderWidth;
-  border-radius: 0px @tabularBorderRadius @tabularBorderRadius 0px !important;
 }
 
 /* Dropdown */
@@ -861,15 +817,6 @@ Floated Menu / Item
   box-shadow: none;
 }
 
-/* Sub Menu */
-.ui.vertical.secondary.menu .item:not(.dropdown) > .menu {
-  margin: @secondaryMenuSubMenuMargin;
-}
-.ui.vertical.secondary.menu .item:not(.dropdown) > .menu > .item {
-  margin: @secondaryMenuSubMenuItemMargin;
-  padding: @secondaryMenuSubMenuItemPadding;
-}
-
 
 /*---------------------
    Secondary Vertical
@@ -1001,11 +948,9 @@ Floated Menu / Item
 }
 
 /* Hover */
-.ui.secondary.inverted.pointing.menu .link.item:hover,
-.ui.secondary.inverted.pointing.menu a.item:hover {
+.ui.secondary.inverted.pointing.menu .item:hover {
   color: @secondaryPointingInvertedItemHoverTextColor;
 }
-
 
 /* Active */
 .ui.secondary.inverted.pointing.menu .active.item {
@@ -1026,14 +971,19 @@ Floated Menu / Item
   margin: @textMenuMargin;
 }
 .ui.text.menu .item {
+  padding: 0em;
   border-radius: 0px;
   box-shadow: none;
   align-self: center;
   margin: @textMenuItemMargin;
-  padding: @textMenuItemPadding;
   font-weight: @textMenuItemFontWeight;
   color: @textMenuItemColor;
   transition: @textMenuItemTransition;
+}
+
+/* Sub Menu */
+.ui.vertical.text.menu > .menu {
+  margin: @textMenuSubMenuMargin;
 }
 
 /* Border */
@@ -1045,6 +995,7 @@ Floated Menu / Item
 /* Header */
 .ui.text.menu .header.item {
   background-color: transparent;
+  padding: 0em;
   opacity: 1;
   color: @textMenuHeaderColor;
   font-size: @textMenuHeaderSize;
@@ -1074,8 +1025,6 @@ Floated Menu / Item
 }
 .ui.vertical.text.menu .item {
   margin: @textVerticalMenuItemMargin;
-  padding-left: 0em;
-  padding-right: 0em;
 }
 .ui.vertical.text.menu .item > i.icon {
   float: @textVerticalMenuIconFloat;
@@ -1083,15 +1032,6 @@ Floated Menu / Item
 }
 .ui.vertical.text.menu .header.item {
   margin: @textVerticalMenuHeaderMargin;
-}
-
-/* Vertical Sub Menu */
-.ui.vertical.text.menu .item:not(.dropdown) > .menu {
-  margin: @textMenuSubMenuMargin;
-}
-.ui.vertical.text.menu .item:not(.dropdown) > .menu > .item {
-  margin: @textMenuSubMenuItemMargin;
-  padding: @textMenuSubMenuItemPadding;
 }
 
 /*--- hover ---*/
@@ -1103,6 +1043,7 @@ Floated Menu / Item
 /*--- active ---*/
 .ui.text.menu .active.item {
   background-color: transparent;
+  padding: 0em;
   border: none;
   box-shadow: none;
   font-weight: @textMenuActiveItemFontWeight;
@@ -1140,42 +1081,33 @@ Floated Menu / Item
     Icon Only
 ---------------*/
 
-/* Vertical Menu */
-.ui.vertical.icon.menu {
-  display: inline-block;
-  width: auto;
-}
-
-/* Item */
 .ui.icon.menu .item {
   height: auto;
   text-align: @iconMenuTextAlign;
   color: @iconMenuItemColor;
 }
-
-/* Icon */
-.ui.icon.menu .item > .icon:not(.dropdown) {
-  margin: 0;
+.ui.icon.menu .item > .icon {
+  margin: 0em;
   opacity: 1;
 }
-
-/* Icon Gylph */
+.ui.vertical.icon.menu .item > .icon:not(.dropdown) {
+  display: block;
+  margin: 0em auto;
+  float: none;
+}
 .ui.icon.menu .icon:before {
   opacity: 1;
 }
 
-/* (x) Item Icon */
+/* Item Icon Only */
 .ui.menu .icon.item > .icon {
   width: auto;
   margin: 0em auto;
 }
 
-/* Vertical Icon */
-.ui.vertical.icon.menu .item > .icon:not(.dropdown) {
-  display: block;
-  opacity: 1;
-  margin: 0em auto;
-  float: none;
+/* Vertical */
+.ui.vertical.icon.menu {
+  width: auto;
 }
 
 /* Inverted */
@@ -1187,28 +1119,29 @@ Floated Menu / Item
    Labeled Icon
 ---------------*/
 
-/* Menu */
 .ui.labeled.icon.menu {
   text-align: center;
 }
-
-/* Item */
-.ui.labeled.icon.menu  .item {
-  min-width: @labeledIconMinWidth;
-  flex-direction: column;
+.ui.fluid.labeled.icon.menu .item {
+  min-width: 0em;
 }
 
-/* Icon */
+.ui.labeled.icon.menu .item {
+  min-width: @labeledIconMinWidth;
+}
+.ui.labeled.icon.menu:not(.vertical) .item {
+  padding-left: @labeledIconItemHorizontalPadding;
+  padding-right: @labeledIconItemHorizontalPadding;
+}
+
 .ui.labeled.icon.menu .item > .icon:not(.dropdown) {
   height: 1em;
   display: block;
   font-size: @labeledIconSize !important;
-  margin: 0em auto @labeledIconTextMargin !important;
+  margin: 0em @labeledIconTextMargin 0em 0em !important;
 }
-
-/* Fluid */
-.ui.fluid.labeled.icon.menu > .item {
-  min-width: 0em;
+.ui.vertical.labeled.icon.menu .item > .icon:not(.dropdown) {
+  margin: 0em auto @labeledIconTextMargin !important;
 }
 
 
@@ -1236,20 +1169,7 @@ Floated Menu / Item
     width: 100%;
     height: @dividerSize;
     background: @verticalDividerBackground;
-  }
-
-  .ui.stackable.menu .left.menu,
-  .ui.stackable.menu .left.item {
-    margin-right: 0 !important;
-  }
-  .ui.stackable.menu .right.menu,
-  .ui.stackable.menu .right.item {
-    margin-left: 0 !important;
-  }
-
-  .ui.stackable.menu .right.menu,
-  .ui.stackable.menu .left.menu {
-    flex-direction: column;
+    height: 1px;
   }
 }
 
@@ -1383,7 +1303,8 @@ Floated Menu / Item
 
 /*--- Pressed ---*/
 .ui.inverted.menu a.item:active,
-.ui.inverted.menu .link.item:active{
+.ui.inverted.menu .link.item:active,
+.ui.inverted.menu a.item:active {
   background: @invertedMenuPressedBackground;
   color: @invertedMenuPressedColor;
 }
@@ -1437,7 +1358,6 @@ Floated Menu / Item
 ---------------*/
 
 /* Red */
-.ui.inverted.menu .red.active.item,
 .ui.inverted.red.menu {
   background-color: @red;
 }
@@ -1449,7 +1369,6 @@ Floated Menu / Item
 }
 
 /* Orange */
-.ui.inverted.menu .orange.active.item,
 .ui.inverted.orange.menu {
   background-color: @orange;
 }
@@ -1461,7 +1380,6 @@ Floated Menu / Item
 }
 
 /* Yellow */
-.ui.inverted.menu .yellow.active.item,
 .ui.inverted.yellow.menu {
   background-color: @yellow;
 }
@@ -1473,7 +1391,6 @@ Floated Menu / Item
 }
 
 /* Olive */
-.ui.inverted.menu .olive.active.item,
 .ui.inverted.olive.menu {
   background-color: @olive;
 }
@@ -1485,7 +1402,6 @@ Floated Menu / Item
 }
 
 /* Green */
-.ui.inverted.menu .green.active.item,
 .ui.inverted.green.menu {
   background-color: @green;
 }
@@ -1497,7 +1413,6 @@ Floated Menu / Item
 }
 
 /* Teal */
-.ui.inverted.menu .teal.active.item,
 .ui.inverted.teal.menu {
   background-color: @teal;
 }
@@ -1509,7 +1424,6 @@ Floated Menu / Item
 }
 
 /* Blue */
-.ui.inverted.menu .blue.active.item,
 .ui.inverted.blue.menu {
   background-color: @blue;
 }
@@ -1521,7 +1435,6 @@ Floated Menu / Item
 }
 
 /* Violet */
-.ui.inverted.menu .violet.active.item,
 .ui.inverted.violet.menu {
   background-color: @violet;
 }
@@ -1533,7 +1446,6 @@ Floated Menu / Item
 }
 
 /* Purple */
-.ui.inverted.menu .purple.active.item,
 .ui.inverted.purple.menu {
   background-color: @purple;
 }
@@ -1545,7 +1457,6 @@ Floated Menu / Item
 }
 
 /* Pink */
-.ui.inverted.menu .pink.active.item,
 .ui.inverted.pink.menu {
   background-color: @pink;
 }
@@ -1557,7 +1468,6 @@ Floated Menu / Item
 }
 
 /* Brown */
-.ui.inverted.menu .brown.active.item,
 .ui.inverted.brown.menu {
   background-color: @brown;
 }
@@ -1569,7 +1479,6 @@ Floated Menu / Item
 }
 
 /* Grey */
-.ui.inverted.menu .grey.active.item,
 .ui.inverted.grey.menu {
   background-color: @grey;
 }
@@ -1655,15 +1564,10 @@ Floated Menu / Item
 .ui.item.menu,
 .ui.item.menu .item {
   width: 100%;
-  padding-left: 0em !important;
-  padding-right: 0em !important;
-  margin-left: 0em !important;
-  margin-right: 0em !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
   text-align: center;
   justify-content: center;
-}
-.ui.attached.item.menu {
-  margin: 0em @attachedHorizontalOffset !important;
 }
 
 .ui.item.menu .item:last-child:before {
@@ -1914,22 +1818,6 @@ Floated Menu / Item
      Sizes
 ---------------*/
 
-/* Mini */
-.ui.mini.menu {
-  font-size: @mini;
-}
-.ui.mini.vertical.menu {
-  width: @miniWidth;
-}
-
-/* Tiny */
-.ui.tiny.menu {
-  font-size: @tiny;
-}
-.ui.tiny.vertical.menu {
-  width: @tinyWidth;
-}
-
 /* Small */
 .ui.small.menu {
   font-size: @small;
@@ -1960,22 +1848,6 @@ Floated Menu / Item
 }
 .ui.huge.vertical.menu {
   width: @hugeWidth;
-}
-
-/* Big */
-.ui.big.menu {
-  font-size: @big;
-}
-.ui.big.vertical.menu {
-  width: @bigWidth;
-}
-
-/* Massive */
-.ui.massive.menu {
-  font-size: @massive;
-}
-.ui.massive.vertical.menu {
-  width: @massiveWidth;
 }
 
 .loadUIOverrides();

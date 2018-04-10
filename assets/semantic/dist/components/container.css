@@ -1,8 +1,9 @@
 /*!
- * # Semantic UI 2.3.1 - Container
+ * # Semantic UI x.x - Container
  * http://github.com/semantic-org/semantic-ui/
  *
  *
+ * Copyright 2015 Contributors
  * Released under the MIT license
  * http://opensource.org/licenses/MIT
  *
@@ -23,17 +24,11 @@
 /* Mobile */
 @media only screen and (max-width: 767px) {
   .ui.container {
-    width: auto !important;
+    width: auto;
     margin-left: 1em !important;
     margin-right: 1em !important;
   }
   .ui.grid.container {
-    width: auto !important;
-  }
-  .ui.relaxed.grid.container {
-    width: auto !important;
-  }
-  .ui.very.relaxed.grid.container {
     width: auto !important;
   }
 }
@@ -46,13 +41,7 @@
     margin-right: auto !important;
   }
   .ui.grid.container {
-    width: calc( 723px  +  2rem ) !important;
-  }
-  .ui.relaxed.grid.container {
-    width: calc( 723px  +  3rem ) !important;
-  }
-  .ui.very.relaxed.grid.container {
-    width: calc( 723px  +  5rem ) !important;
+    width: calc( 723px  +  2em ) !important;
   }
 }
 
@@ -64,13 +53,7 @@
     margin-right: auto !important;
   }
   .ui.grid.container {
-    width: calc( 933px  +  2rem ) !important;
-  }
-  .ui.relaxed.grid.container {
-    width: calc( 933px  +  3rem ) !important;
-  }
-  .ui.very.relaxed.grid.container {
-    width: calc( 933px  +  5rem ) !important;
+    width: calc( 933px  +  2em ) !important;
   }
 }
 
@@ -82,13 +65,7 @@
     margin-right: auto !important;
   }
   .ui.grid.container {
-    width: calc( 1127px  +  2rem ) !important;
-  }
-  .ui.relaxed.grid.container {
-    width: calc( 1127px  +  3rem ) !important;
-  }
-  .ui.very.relaxed.grid.container {
-    width: calc( 1127px  +  5rem ) !important;
+    width: calc( 1127px  +  2em ) !important;
   }
 }
 
