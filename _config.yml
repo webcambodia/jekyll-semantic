@@ -3,6 +3,12 @@ author: GitHub User
 email: your-email@domain.com
 description: > # this means to ignore newlines until "twitter_username:"
 
+#disqus:
+#  shortname:
+
+#google:
+#  analytics:
+
 # social links
 # twitter_username:
 # github_username:
@@ -24,10 +30,9 @@ description: > # this means to ignore newlines until "twitter_username:"
 #   instance: example.com
 
 
-show_excerpts: false # set to true to show excerpts on the homepage
 
-# Minima date format
-# refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
+
+show_excerpts: false # set to true to show excerpts on the homepage
 
 date_format: "%b %-d, %Y"
 
